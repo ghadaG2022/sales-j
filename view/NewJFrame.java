@@ -346,7 +346,33 @@ public class NewJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+           
+              NewJFrame j =new NewJFrame();
+                j.setVisible(true);
+              
+                FileOperation fileOperations = new FileOperation(j);
+                ArrayList<InvoiceHeader> inv= fileOperations.FileRead2();
+               j.setAllinvoices(inv);
+              for(int i=0;i<inv.size();i++){
+                System.out.print("{");
+               System.out.print("Invoice"+i+"Num"+"\n"+inv.get(i).getDate()+","+inv.get(i).getName());
+                System.out.print("\n");
+                
+           for(int c=0;c<inv.get(i).getListofitems().size();c++){
+               System.out.print(""+inv.get(i).getListofitems().get(c).getItemname()+","+inv.get(i).getListofitems().get(c).getPrice()+","+inv.get(i).getListofitems().get(c).getQuantity()+"");
+               System.out.print("\n");
+                
+           }
+           System.out.print("}");
+              System.out.print("\n");
+            }
+            
+         table1 invoiceTable2 = new table1(inv);
+         j.setTabel1(invoiceTable2);
+        j.getJFrameTable().setModel(invoiceTable2);
+        j.getTabel1().fireTableDataChanged();
+            }
+              
             }
         });
     }
