@@ -221,7 +221,7 @@ public class FileOperation {
      public  ArrayList <InvoiceHeader> FileRead2(){
        
  try {
-          BufferedReader READER = new BufferedReader(new FileReader("src/csv/InvoiceHeader.csv"));
+          BufferedReader READER = new BufferedReader(new FileReader("src/InvoiceHeader.csv"));
           String line;                
           while ((line = READER.readLine()) != null) {
                 System.out.println(line);
@@ -233,7 +233,7 @@ public class FileOperation {
                 listofinvoiceobjects.add(invoice);
               
           }
-          BufferedReader READER2 = new BufferedReader(new FileReader("src/csv/InvoiceLine.csv"));
+          BufferedReader READER2 = new BufferedReader(new FileReader("src/InvoiceLine.csv"));
          String line2;
             while ((line2 = READER2.readLine()) != null) {
                 String row2[] = line2.split(",");
