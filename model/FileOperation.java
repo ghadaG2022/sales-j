@@ -217,5 +217,41 @@ public class FileOperation {
 }
     
 }
+      
+     public  ArrayList <InvoiceHeader> FileRead2(){
+       
+ try {
+          BufferedReader READER = new BufferedReader(new FileReader("src/csv/InvoiceHeader.csv"));
+          String line;                
+          while ((line = READER.readLine()) != null) {
+                System.out.println(line);
+                String row[] = line.split(",");
+                int num = Integer.parseInt(row[0]);
+                String date = row[1];
+                String name = row[2];
+                InvoiceHeader invoice = new InvoiceHeader(num, date, name);
+                listofinvoiceobjects.add(invoice);
+              
+          }
+          BufferedReader READER2 = new BufferedReader(new FileReader("src/csv/InvoiceLine.csv"));
+         String line2;
+            while ((line2 = READER2.readLine()) != null) {
+                String row2[] = line2.split(",");
+                int num2 = Integer.parseInt(row2[0]);
+                String itemname = row2[1];
+                 double price = Double.parseDouble(row2[2]);
+                 int quntity = Integer.parseInt(row2[3]);
+                  InvoiceHeader invoiceheaderobject=getinvoiceheaderobject(num2);
+                  InvoiceLine item = new InvoiceLine(invoiceheaderobject,itemname,price,quntity);
+                invoiceheaderobject.getListofitems().add(item);}
+  
+}
+   
+        catch (Exception e)
+        {System.out.print("ddfd");
+        e.printStackTrace();}
+  return listofinvoiceobjects;
+
+     }     
 }
 
